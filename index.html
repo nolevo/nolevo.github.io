@@ -250,6 +250,184 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nolevo.github.io/2020/04/27/win10ip/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Nolevo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nolevo's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/27/win10ip/" itemprop="url">win10电脑通过bat脚本自动配置IP地址</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-27T23:19:02+08:00">
+                2020-04-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>前几天电脑安装了windows10,需要随时切换IP地址、IP网关之类，所以就在网上探索了教程，并修改为适合自己使用的。</p>
+<h1 id="1-代码部分"><a href="#1-代码部分" class="headerlink" title="1 代码部分"></a>1 代码部分</h1><pre><code>@echo off
+rem //【附：该.bat命令只适合windows10系统，win7本人没有测试，代码源自互联网】下面一行命令是强制获取管理员权限
+%1 mshta vbscript:CreateObject(&quot;Shell.Application&quot;).ShellExecute(&quot;cmd.exe&quot;,&quot;/c %~s0 ::&quot;,&quot;&quot;,&quot;runas&quot;,1)(window.close)&amp;&amp;exit
+rem //设置变量 
+set NAME=&quot;以太网&quot;
+rem //以下属性值需要根据自己的实际情况更改，例如我的IP段是10.0.0.0/24
+set ADDR=10.0.0.38
+set MASK=255.0.0.0
+set GATEWAY=10.0.0.10
+set DNS1=10.0.0.10
+set DNS2=
+rem //以上属性依次为IP地址、子网掩码、网关、首选DNS、备用DNS
+
+
+echo 当前可用操作有：
+echo 1 设置为静态IP
+echo 2 设置为动态IP
+echo 3 退出
+echo 请选择后回车：
+set /p operate=
+if %operate%==1 goto 1
+if %operate%==2 goto 2
+if %operate%==3 goto 3
+
+
+:1
+echo 正在设置静态IP，请稍等！
+rem //可以根据你的需要更改 
+echo IP地址 = %ADDR%
+echo 掩码 = %MASK%
+echo 网关 = %GATEWAY%
+netsh interface ipv4 set address %NAME% static %ADDR% %MASK% %GATEWAY% 
+echo 首选DNS = %DNS1% 
+netsh interface ipv4 set dns %NAME% static %DNS1% register=PRIMARY validate=no
+echo 备用DNS = %DNS2% 
+if &quot;%DNS2%&quot;==&quot;&quot; (echo DNS2没有设置) else (netsh interface ipv4 add dns %NAME% %DNS2%) 
+echo 静态IP已设置！
+pause
+goto 3
+
+
+:2
+echo 正在设置动态IP，请稍等！
+echo 正在从DHCP自动获取IP地址...
+netsh interface ip set address %NAME% dhcp
+echo 正在从DHCP自动获取DNS地址...
+netsh interface ip set dns %NAME% dhcp 
+echo 动态IP已设置！
+pause
+goto 3
+
+
+:3
+exit</code></pre><h1 id="2-文件编码"><a href="#2-文件编码" class="headerlink" title="2 文件编码"></a>2 文件编码</h1>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/27/win10ip/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://nolevo.github.io/2020/04/27/hexo-sj/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1435,128 +1613,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://nolevo.github.io/2019/01/03/PC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Nolevo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Nolevo's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/03/PC/" itemprop="url">喜获电脑一台</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-03T22:50:52+08:00">
-                2019-01-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一个偶然的机会同一个收破烂的大娘60元购买过来的（20181230），电脑配置以下：</p>
-<p>电脑型号    X64 兼容 台式电脑<br>操作系统    Windows 7 旗舰版 64位 SP1 ( DirectX 11 )<br>处理器    AMD A8-5600K APU with Radeon HD Graphics 四核<br>主板    华硕 F2A85-M LE (AMD K15)<br>内存    4 GB ( 威刚 DDR3 1600MHz )<br>主硬盘    西数 WDC WD10EZEX-00ZF5A0 ( 1 TB / 7200 转/分 )<br>显卡    ATI Radeon HD 7560D  ( 768 MB / 华硕 )<br>显示器    LG GSM5825 E2281 ( 21.7 英寸 )<br>声卡    瑞昱 ALC887 @ ATI 高保真音频<br>网卡    瑞昱 RTL8168F PCI-E Gigabit Ethernet NIC / 华硕</p>
-<p>2013的机子，不包含显示器。呵呵！购买过来时是开不了机的，给维修师傅检查发现是主板的问题。还好可以维修，换了一个电子就成功开机。维修费80块，值。一共140有台二手配置还不差的电脑用。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1607,7 +1663,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1620,7 +1676,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
