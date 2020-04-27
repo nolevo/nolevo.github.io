@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="OpenWrt," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="闲来无趣，修改了3800路由固件。Mark  使用须知前言 本固件基于Lede，加上主流的一些软件，由明月永在修改整理并编译。本人固件免费发放使用，每个版本都经过认真的测试，但本人不对使用固件所造成的后果负任何责任。OpenWrt使用难度肯定比原厂的系统高，个人认为OpenWrt并不是每个人都适合的。OpenWrt是给会用的人用的，或者是给会学习的人用的，不是给普罗大众用的。如果认为Lede系统太">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenWrt Lede">
+<meta property="og:url" content="https://nolevo.github.io/2018/01/16/OpenWrt/index.html">
+<meta property="og:site_name" content="Nolevo&#39;s Notes">
+<meta property="og:description" content="闲来无趣，修改了3800路由固件。Mark  使用须知前言 本固件基于Lede，加上主流的一些软件，由明月永在修改整理并编译。本人固件免费发放使用，每个版本都经过认真的测试，但本人不对使用固件所造成的后果负任何责任。OpenWrt使用难度肯定比原厂的系统高，个人认为OpenWrt并不是每个人都适合的。OpenWrt是给会用的人用的，或者是给会学习的人用的，不是给普罗大众用的。如果认为Lede系统太">
+<meta property="article:published_time" content="2018-01-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2019-01-02T03:40:09.322Z">
+<meta property="article:author" content="Nolevo">
+<meta property="article:tag" content="OpenWrt">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nolevo.github.io/2018/01/16/OpenWrt/"/>
+
+
+
+
+
+  <title>OpenWrt Lede | Nolevo's Notes</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Nolevo's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">love love love</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nolevo.github.io/2018/01/16/OpenWrt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Nolevo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nolevo's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">OpenWrt Lede</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-16T00:00:00+08:00">
+                2018-01-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>闲来无趣，修改了3800路由固件。<br>Mark</p>
+<hr>
+<p>使用须知<br>前言</p>
+<p>本固件基于Lede，加上主流的一些软件，由明月永在修改整理并编译。本人固件免费发放使用，每个版本都经过认真的测试，但本人不对使用固件所造成的后果负任何责任。OpenWrt使用难度肯定比原厂的系统高，个人认为OpenWrt并不是每个人都适合的。OpenWrt是给会用的人用的，或者是给会学习的人用的，不是给普罗大众用的。如果认为Lede系统太难，建议使用原厂系统。</p>
+<p>使用注意事项：</p>
+<p>该系列固件系统默认密码为root，无线默认密码更新为：rootroot(为了你的系统安全，建议登录后修改登录密码和无线密码）。网关依然为192.168.10.1<a id="more"></a></p>
+<p>Lede系统和软件使用都需要有一定的基础和经验，本人没有义务对固件的使用进行使用培训和教育。先提示一些基本的常识，QOS软件只能开一个；多拨和QOS冲突；Shadowsocks和QOS冲突；多拨软件NWAN和PPPOE(并发)多拨只能开一个。</p>
+<p>如果有问题请按以下程序来解决：</p>
+<p>1、浏览器打开<a href="https://www.myopenwrt.org登录到本人的博客，此博客已经写了许多图文并茂教程，大部分问题都能在此解决。如果此网站有问题打不开时，请使用备份网站：www.mingyueyongzai.cf。">https://www.myopenwrt.org登录到本人的博客，此博客已经写了许多图文并茂教程，大部分问题都能在此解决。如果此网站有问题打不开时，请使用备份网站：www.mingyueyongzai.cf。</a></p>
+<p>2、到恩山论坛搜索相关的内容，查找相关的解决方式，恩山上有很多使用教程，你碰到问题，别人基本会碰到过。另可使用百度、谷歌来查找解决方法。</p>
+<p>3、加固件QQ交流群，请教一下群友。现在有两个群，基本已满。群号264838856、578272568(付费)、Linksys WRT VIP群537786574(付费)、IPQ系列VIP群201915247(付费)。建群是提供一个平台给大家交流经验，互相帮助的，这里没有客服，如果你想找客服，就不必要加了，会让你失望的。提问请适当用词，质问式的提问有没有理你，那就看你的运气了。另外如果你会了，请帮助下别人。互相帮助是我们群存在的意义 ！！本人时间不多，一般不会回答使用问题，但可以接受bug提交和已有软件的功能改进，一般不接受增加软件要求。另外OpenWrt官方的bug，本人没能力来解决。所以提交bug前，请查先确认一下，是本人固件的bug还是官方op的bug。</p>
+<p>4、本人愿意和水平相当的朋友交流，请注意是交流，对于只会一直问我要这要那的不算交流。本人最不喜欢不认识的人，一加群就上来要东西。请不要这样，会让你失望的，也会让双方都尴尬。其实你要的东西基本网上都找得到的。</p>
+<p>5、如果经过多种努力，仍然没有好的解决方法，可以给我留言。如果本人有空，可以帮忙一下。请不要认为有问必答，问东西的人比较多，有问必答不现实的哈。质问式的提问、教程上已经写了有的，一般会被忽略。另外有很多软件，是朋友帮测试的，我也不会用。会打鱼的不会做鱼很正常哈。</p>
+<p>6、最近工作非常忙，QQ好友已经接近上限，也没办法再加好友，恕无办法帮忙，使用问题请自行解决。特殊情况加好友，请备注！</p>
+<p>明月永在 （rapistor)</p>
+<p>2017年9月</p>
+<p>QQ群：264838856、578272568(付费)、Linksys WRT VIP群537786574、IPQ系列VIP群201915247</p>
+<p>教程网址：<a href="https://www.myopenwrt.org" target="_blank" rel="noopener">https://www.myopenwrt.org</a></p>
+<p>备用教程网址(暂无)：<a href="http://www.mingyueyongzai.cf" target="_blank" rel="noopener">www.mingyueyongzai.cf</a></p>
+<p>固件更新地址：<a href="https://www.myopenwrt.org/firmware-download" target="_blank" rel="noopener">https://www.myopenwrt.org/firmware-download</a></p>
+<p>恩山固件帖子：博客网站有问题时可点击到此反馈或获取新的消息</p>
+<p>特别声明：本固件只授权个人免费使用。另请不要使用固件从事违法活动，本人对软件不当使用所造成的后果不负任何责任。</p>
+<hr>
+<p>End</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/OpenWrt/" rel="tag"># OpenWrt</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/14/Send%20Anywhere/" rel="next" title="Send Anywhere - 终结烦恼的跨平台文件传输工具神器！手机电脑互传超方便">
+                <i class="fa fa-chevron-left"></i> Send Anywhere - 终结烦恼的跨平台文件传输工具神器！手机电脑互传超方便
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/20/ssh/" rel="prev" title="github设置ssh">
+                github设置ssh <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Nolevo</p>
+              <p class="site-description motion-element" itemprop="description">hexo,git,vps,ssr,blog</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Nolevo</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

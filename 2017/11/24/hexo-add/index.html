@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="hexo," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="📋 修改文章底部的那个带#号的标签实现效果图看文章底部标签 具体实现方法： 修改模板&#x2F;themes&#x2F;next&#x2F;layout&#x2F;_macro&#x2F;post.swig，搜索 1rel&#x3D;&quot;tag&quot;&gt;#，将 # 换成&lt;i class&#x3D;&quot;fa fa-tags&quot;&gt;&lt;&#x2F;i&gt;     设置网站的图标Favicon实现效">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo更多花样玩法">
+<meta property="og:url" content="https://nolevo.github.io/2017/11/24/hexo-add/index.html">
+<meta property="og:site_name" content="Nolevo&#39;s Notes">
+<meta property="og:description" content="📋 修改文章底部的那个带#号的标签实现效果图看文章底部标签 具体实现方法： 修改模板&#x2F;themes&#x2F;next&#x2F;layout&#x2F;_macro&#x2F;post.swig，搜索 1rel&#x3D;&quot;tag&quot;&gt;#，将 # 换成&lt;i class&#x3D;&quot;fa fa-tags&quot;&gt;&lt;&#x2F;i&gt;     设置网站的图标Favicon实现效">
+<meta property="article:published_time" content="2017-11-24T09:27:59.000Z">
+<meta property="article:modified_time" content="2019-01-02T03:40:09.331Z">
+<meta property="article:author" content="Nolevo">
+<meta property="article:tag" content="hexo">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nolevo.github.io/2017/11/24/hexo-add/"/>
+
+
+
+
+
+  <title>hexo更多花样玩法 | Nolevo's Notes</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Nolevo's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">love love love</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nolevo.github.io/2017/11/24/hexo-add/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Nolevo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nolevo's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">hexo更多花样玩法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-24T17:27:59+08:00">
+                2017-11-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>📋</p>
+<h2 id="修改文章底部的那个带-号的标签"><a href="#修改文章底部的那个带-号的标签" class="headerlink" title="修改文章底部的那个带#号的标签"></a>修改文章底部的那个带#号的标签</h2><p>实现效果图看文章底部标签</p>
+<p>具体实现方法：</p>
+<p>修改模板/themes/next/layout/_macro/post.swig，搜索</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rel&#x3D;&quot;tag&quot;&gt;#，将 # 换成&lt;i class&#x3D;&quot;fa fa-tags&quot;&gt;&lt;&#x2F;i&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h2 id="设置网站的图标Favicon"><a href="#设置网站的图标Favicon" class="headerlink" title="设置网站的图标Favicon"></a>设置网站的图标Favicon</h2><p>实现效果图</p>
+<p>具体方法实现：</p>
+<p>在<a href="https://www.easyicon.net" target="_blank" rel="noopener">EasyIcon</a>中找一张（32*32）的ico图标,或者去别的网站下载或者制作，并将图标名称改为favicon.ico，然后把图标放在/themes/next/source/images里，并且修改主题配置文件：</p>
+<p>Put your favicon.ico into <code>hexo-site/source/</code> directory.<br>favicon: /images/favicon.ico</p>
+<a id="more"></a>
+
+
+<h2 id="添加-README-md-文件"><a href="#添加-README-md-文件" class="headerlink" title="添加 README.md 文件"></a>添加 README.md 文件</h2><p>每个项目下一般都有一个 README.md 文件，但是使用 hexo 部署到仓库后，项目下是没有  README.md 文件的。</p>
+<p>在 Hexo 目录下的 source 根目录下添加一个 README.md 文件，修改站点配置文件 _config.yml，将 skip_render 参数的值设置为</p>
+<p>skip_render: README.md<br>保存退出即可。再次使用 hexo d 命令部署博客的时候就不会在渲染 README.md 这个文件了。</p>
+<h2 id="修改网页底部的黑桃心"><a href="#修改网页底部的黑桃心" class="headerlink" title="修改网页底部的黑桃心"></a>修改网页底部的黑桃心</h2><p>还是打开themes/next/layout/_partials/footer.swig，找到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;span class&#x3D;&quot;with-love&quot;&gt;</span><br><span class="line">  &lt;i class&#x3D;&quot;fa fa-star&quot;&gt;&lt;&#x2F;i&gt;</span><br></pre></td></tr></table></figure>
+
+
+<p>在<a href="http://fontawesome.io/icons/" target="_blank" rel="noopener">图标库</a>找到你自己喜欢的图标，然后修改star的部分内容就可以了。</p>
+<h2 id="修改字体大小"><a href="#修改字体大小" class="headerlink" title="修改字体大小"></a>修改字体大小</h2><p>打开\themes\next\source\css\ _variables\base.styl文件，将$font-size-base改成16px，如下所示：</p>
+<p>$font-size-base            =16px</p>
+<h2 id="Hexo去掉底部强力驱动及主题字样"><a href="#Hexo去掉底部强力驱动及主题字样" class="headerlink" title="Hexo去掉底部强力驱动及主题字样"></a>Hexo去掉底部强力驱动及主题字样</h2><p>找到 \themes\next\layout_partials\下面的footer.swig文件，打开：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;powered-by&quot;&gt;</span><br><span class="line">  &#123;&#123; __(&#39;footer.powered&#39;, &#39;&lt;a class&#x3D;&quot;theme-link&quot; href&#x3D;&quot;https:&#x2F;&#x2F;hexo.io&quot;&gt;Hexo&lt;&#x2F;a&gt;&#39;) &#125;&#125;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;div class&#x3D;&quot;theme-info&quot;&gt;</span><br><span class="line">  &#123;&#123; __(&#39;footer.theme&#39;) &#125;&#125; -</span><br><span class="line">  &lt;a class&#x3D;&quot;theme-link&quot; href&#x3D;&quot;https:&#x2F;&#x2F;github.com&#x2F;iissnan&#x2F;hexo-theme-next&quot;&gt;</span><br><span class="line">    NexT.&#123;&#123; theme.scheme &#125;&#125;</span><br><span class="line">  &lt;&#x2F;a&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<p> 第一条是“由Hexo驱动” 的Hexo链接，把xml段删除，只留两个单引号’’。</p>
+<p>第二条是“主题-Next.XX”，将xml段都删掉，不留引号。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;powered-by&quot;&gt;</span><br><span class="line">  &#123;&#123; __(&#39;footer.powered&#39;, &#39;&#39;) &#125;&#125;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;div class&#x3D;&quot;theme-info&quot;&gt;</span><br><span class="line">  &#123;&#123; __(&#39;footer.theme&#39;) &#125;&#125;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+
+<p>找到这个地方\themes\next\languages\ 下面的语言文件zh-Hans.yml（以中文为例）：</p>
+<p>footer:<br>  powered: “由 %s 强力驱动”<br>  theme: 主题<br>将上面的文字改成自己想要的即可。</p>
+<h2 id="文章置顶"><a href="#文章置顶" class="headerlink" title="文章置顶"></a>文章置顶</h2><p>在hexo github 的issue里找到了解决办法,解决Hexo置顶问题，只需两步：<br>1、用文章中的js代码替换node_modules/hexo-generator-index/lib/generator.js (见下文代码段),修改前最好备份一下<br>2、在需要置顶的文章的front-matter中添加top值，值越大越置顶。<!-- more --></p>
+<hr>
+<p>title: 某文章<br>date:<br>top: 1000</p>
+<hr>
+<p>以下是最终的node_modules/hexo-generator-index/lib/generator.js</p>
+<blockquote>
+<p>‘use strict’;<br>var pagination = require(‘hexo-pagination’);<br>module.exports = function(locals){<br>  var config = this.config;<br>  var posts = locals.posts;<br>    posts.data = posts.data.sort(function(a, b) {<br>        if(a.top &amp;&amp; b.top) { // 两篇文章top都有定义<br>            if(a.top == b.top) return b.date - a.date; // 若top值一样则按照文章日期降序排<br>            else return b.top - a.top; // 否则按照top值降序排<br>        }<br>        else if(a.top &amp;&amp; !b.top) { // 以下是只有一篇文章top有定义，那么将有top的排在前面（这里用异或操作居然不行233）<br>            return -1;<br>        }<br>        else if(!a.top &amp;&amp; b.top) {<br>            return 1;<br>        }<br>        else return b.date - a.date; // 都没定义按照文章日期降序排<br>    });<br>  var paginationDir = config.pagination_dir || ‘page’;<br>  return pagination(‘’, posts, {<br>    perPage: config.index_generator.per_page,<br>    layout: [‘index’, ‘archive’],<br>    format: paginationDir + ‘/%d/‘,<br>    data: {<br>      __index: true<br>    }<br>  });<br>};</p>
+</blockquote>
+<p>谢谢观看！</p>
+<p>End</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/hexo/" rel="tag"># hexo</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/24/yu-yf/" rel="next" title="Yu Writer快速入门">
+                <i class="fa fa-chevron-left"></i> Yu Writer快速入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/24/git-push-pull/" rel="prev" title="Git远程操作详解">
+                Git远程操作详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Nolevo</p>
+              <p class="site-description motion-element" itemprop="description">hexo,git,vps,ssr,blog</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#修改文章底部的那个带-号的标签"><span class="nav-number">1.</span> <span class="nav-text">修改文章底部的那个带#号的标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置网站的图标Favicon"><span class="nav-number">2.</span> <span class="nav-text">设置网站的图标Favicon</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加-README-md-文件"><span class="nav-number">3.</span> <span class="nav-text">添加 README.md 文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改网页底部的黑桃心"><span class="nav-number">4.</span> <span class="nav-text">修改网页底部的黑桃心</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改字体大小"><span class="nav-number">5.</span> <span class="nav-text">修改字体大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo去掉底部强力驱动及主题字样"><span class="nav-number">6.</span> <span class="nav-text">Hexo去掉底部强力驱动及主题字样</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章置顶"><span class="nav-number">7.</span> <span class="nav-text">文章置顶</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Nolevo</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

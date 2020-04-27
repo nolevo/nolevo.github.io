@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="google,教程,v2ray,twitter," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="📋通过以下网址 https:&#x2F;&#x2F;github.com&#x2F;Moexin&#x2F;Easy-V2ray的教程安装了V2ray 在Xshell 5 输入以下命令行可以下载config.json sz &#x2F;root&#x2F;config.json简介 V2ray是一个模块化的代理程序，类似于SS。但是其诞生之初就是为了解决部分SS的缺点以及增加一些特色的改良功能。由于起模块化的设计，功能十分强大，但是配置文件这一步难倒了不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="v2ray">
+<meta property="og:url" content="https://nolevo.github.io/2017/11/17/v2ray/index.html">
+<meta property="og:site_name" content="Nolevo&#39;s Notes">
+<meta property="og:description" content="📋通过以下网址 https:&#x2F;&#x2F;github.com&#x2F;Moexin&#x2F;Easy-V2ray的教程安装了V2ray 在Xshell 5 输入以下命令行可以下载config.json sz &#x2F;root&#x2F;config.json简介 V2ray是一个模块化的代理程序，类似于SS。但是其诞生之初就是为了解决部分SS的缺点以及增加一些特色的改良功能。由于起模块化的设计，功能十分强大，但是配置文件这一步难倒了不">
+<meta property="article:published_time" content="2017-11-17T09:41:20.000Z">
+<meta property="article:modified_time" content="2019-01-02T03:40:09.341Z">
+<meta property="article:author" content="Nolevo">
+<meta property="article:tag" content="google">
+<meta property="article:tag" content="教程">
+<meta property="article:tag" content="v2ray">
+<meta property="article:tag" content="twitter">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nolevo.github.io/2017/11/17/v2ray/"/>
+
+
+
+
+
+  <title>v2ray | Nolevo's Notes</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Nolevo's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">love love love</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nolevo.github.io/2017/11/17/v2ray/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Nolevo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nolevo's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">v2ray</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-17T17:41:20+08:00">
+                2017-11-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>📋<br>通过以下网址</p>
+<pre><code>https://github.com/Moexin/Easy-V2ray</code></pre><p>的教程安装了V2ray</p>
+<p>在Xshell 5 输入以下命令行可以下载config.json</p>
+<pre><code>sz /root/config.json</code></pre><p>简介</p>
+<p>V2ray是一个模块化的代理程序，类似于SS。但是其诞生之初就是为了解决部分SS的缺点以及增加一些特色的改良功能。由于起模块化的设计，功能十分强大，但是配置文件这一步难倒了不少小白。本人在网上收集大量教程整合并修改完成了这个一键包（感谢雨落无声提供的源码），帮助大家快速上手V2ray，体验体验~ 具体功能可以参考官方网站：v2ray.com</p>
+<a id="more"></a>
+<p>脚本</p>
+<p>Github地址： <code>https://github.com/Moexin/Easy-V2ray</code></p>
+<p>功能</p>
+<p>利用官方脚本部署V2ray,简单方便</p>
+<p>一键生成服务器和客户端配置，不再为配置文件而烦恼</p>
+<p>支持选择mkcp协议 (<a href="https://www.v2ray.com/chapter_03/kcp.html" target="_blank" rel="noopener">https://www.v2ray.com/chapter_03/kcp.html</a>)</p>
+<p>支持开启http头部伪装 (<a href="https://toutyrater.github.io/v2ray-guide-pages/advance_config/httpfake.html" target="_blank" rel="noopener">https://toutyrater.github.io/v2ray-guide-pages/advance_config/httpfake.html</a>)</p>
+<p>全中文提示，可一路回车完成配置</p>
+<p>自动绕过大陆常用域名和大陆地区IP地址，只加速海外流量。(<a href="https://www.v2ray.com/chapter_02/03_routing.html" target="_blank" rel="noopener">https://www.v2ray.com/chapter_02/03_routing.html</a>)</p>
+<p>可选择开启动态端口功能。<a href="https://toutyrater.github.io/v2ray-guide-pages/advance_config/dynamicport.html" target="_blank" rel="noopener">https://toutyrater.github.io/v2ray-guide-pages/advance_config/dynamicport.html</a></p>
+<p>可选择客户端是socks代理或者是http代理</p>
+<p>可选择开启 Mux.Cool</p>
+<p>默认开启UDP支持</p>
+<p>提醒</p>
+<p>可以反复运行此脚本来尝试不同的配置组合，不会重复安装的，请放心。</p>
+<p>不同的配置组合会影响速度，可以自己多折腾折腾。</p>
+<p>请勿盲目与SS或者SSR对比，只要能高速扶墙就是好东西，按个人喜好选择就好了。</p>
+<p>一键脚本</p>
+<pre><code>wget --no-check-certificate https://raw.githubusercontent.com/Moexin/Easy-V2ray/master/v2ray.sh &amp;&amp; bash v2ray.sh</code></pre><p>安装完成后下载VPS上 /root/config.json 客户端配置文件，与V2ray放在同一个文件夹下。（V2ray下载地址：<a href="https://github.com/v2ray/v2ray-core/releases/latest）" target="_blank" rel="noopener">https://github.com/v2ray/v2ray-core/releases/latest）</a> 然后运行V2ray，设置代理为http代理，代理服务器地址：127.0.0.1，代理端口为1080，你就进入自由的互联网啦！</p>
+<p>系统支持</p>
+<p>Debian 7 Debian 8 Ubuntu 14 Ubuntu 16 CentOS 7</p>
+<p>注意事项 不支持CentOS6系统</p>
+<p>如需在手机上使用Shadowrocket软件连接Vmess协议，请勿在脚本内开启mKCP协议和HTTP头部伪装功能</p>
+<p>客户端默认是http代理，直接在IE里设置为127.0.0.1:1080即可</p>
+<p>如需启用socks，请在客户端文件config.json中把 http 改为 socks 重启系统须自己手动把防火墙关闭</p>
+<p>请使用Xshell连接以支持中文的正常显示</p>
+<p>缺点</p>
+<p>此脚本会关闭防火墙，仅适用于纯粹用于扶墙的VPS，请勿在生产环境下使用</p>
+<blockquote>
+<p>感谢</p>
+</blockquote>
+<blockquote>
+<p>雨落无声</p>
+</blockquote>
+<blockquote>
+<p>V2ray</p>
+</blockquote>
+<hr>
+<p>End</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/google/" rel="tag"># google</a>
+          
+            <a href="/tags/%E6%95%99%E7%A8%8B/" rel="tag"># 教程</a>
+          
+            <a href="/tags/v2ray/" rel="tag"># v2ray</a>
+          
+            <a href="/tags/twitter/" rel="tag"># twitter</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/17/ssr/" rel="next" title="ssr">
+                <i class="fa fa-chevron-left"></i> ssr
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/18/hexoadd/" rel="prev" title="安装Hexo">
+                安装Hexo <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Nolevo</p>
+              <p class="site-description motion-element" itemprop="description">hexo,git,vps,ssr,blog</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Nolevo</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
