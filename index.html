@@ -444,8 +444,7 @@
 
       
         
-          
-            <hr>
+          <hr>
 <p>本文主要是为了记录本人在docker下安装各种的Containers方法。<br>步骤一和步骤二可不用设置，我设置是为了在电脑直接SSH。因为谷歌云的自带网页版SSH太慢了，然后想复制或上传文件都难。</p>
 <p>新建VM实例，完成后进入SSH</p>
 <h1 id="一、设置root密码"><a href="#一、设置root密码" class="headerlink" title="一、设置root密码"></a>一、设置root密码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -i</span><br></pre></td></tr></table></figure>
@@ -479,36 +478,14 @@
 <p>4.安装docker面板Portainer</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 9000:9000 --name portainer --restart always -v &#x2F;var&#x2F;run&#x2F;docker.sock:&#x2F;var&#x2F;run&#x2F;docker.sock -v portainer_data:&#x2F;data portainer&#x2F;portainer</span><br></pre></td></tr></table></figure>
 
-<p>访问你的ip:9000,进入初始化，设置一个管理员密码。。。</p>
-<h1 id="四、Docker下安装各种Containers"><a href="#四、Docker下安装各种Containers" class="headerlink" title="四、Docker下安装各种Containers"></a>四、Docker下安装各种Containers</h1><p>h5ai      安装使用这个命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -t -p 8088:80 -v &#x2F;h5ai:&#x2F;h5ai --name h5ai ilemonrain&#x2F;h5ai:full</span><br></pre></td></tr></table></figure>
-
-<p>v2ray     安装参考网址<a href="https://hub.docker.com/r/teddysun/v2ray" target="_blank" rel="noopener">https://hub.docker.com/r/teddysun/v2ray</a></p>
-<p>SSR   安装参考网址<a href="https://hub.docker.com/r/teddysun/shadowsocks-r" target="_blank" rel="noopener">https://hub.docker.com/r/teddysun/shadowsocks-r</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 5909:5909 -p 5909:5909&#x2F;udp --name ssr --restart&#x3D;always -v &#x2F;etc&#x2F;shadowsocks-r:&#x2F;etc&#x2F;shadowsocks-r teddysun&#x2F;shadowsocks-r</span><br></pre></td></tr></table></figure>
-
-<p>Nginx   可用以下代码 ， 或者在portainer里面自带的安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 80:80 nginx</span><br></pre></td></tr></table></figure>
-
-<p>Frps      安装参考网址<a href="https://github.com/clangcn/frp-docker/tree/master/frps-docker" target="_blank" rel="noopener">https://github.com/clangcn/frp-docker/tree/master/frps-docker</a>    复制粘贴就好</p>
-<p>Speedtest </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 444:80 lihaixin&#x2F;speedtest</span><br></pre></td></tr></table></figure>
-
-<h1 id="五、docker常用命令："><a href="#五、docker常用命令：" class="headerlink" title="五、docker常用命令："></a>五、docker常用命令：</h1><p>docker stats 命令用来显示容器使用的系统资源。不带任何选项执行 docker stats 命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stats</span><br></pre></td></tr></table></figure>
-
-
-<p>默认情况下，stats 命令会每隔 1 秒钟刷新一次输出的内容直到你按下 ctrl + c</p>
-<p>下面是输出的主要内容：</p>
-<p>[CONTAINER]：以短格式显示容器的 ID。<br>[CPU %]：CPU 的使用情况。<br>[MEM USAGE / LIMIT]：当前使用的内存和最大可以使用的内存。<br>[MEM %]：以百分比的形式显示内存使用情况。<br>[NET I/O]：网络 I/O 数据。<br>[BLOCK I/O]：磁盘 I/O 数据。<br>[PIDS]：PID 号。</p>
-<p>只返回当前的状态<br>如果不想持续的监控容器使用资源的情况，可以通过 –no-stream 选项只输出当前的状态：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stats --no-stream</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="https://s2.ax1x.com/2019/11/30/QZiuSU.png" alt="QZiuSU.png"></p>
-<p>END</p>
-
-          
+<p>访问你的ip:9000,进入初始化，设置一个管理员密码。。。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/11/29/docker/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
