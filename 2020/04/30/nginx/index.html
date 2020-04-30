@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Nolevo&#39;s Notes">
 <meta property="og:description" content="一、HTTP 服务Nginx 的最大作用，就是搭建一个 Web Server。有了容器，只要一行命令，服务器就架设好了，完全不用配置。  我这里假设VPS给你的公网IP是1.1.1.1  docker container run \ -d \ -p 80:80 \ --rm \ --name mynginx \ nginx上面命令下载并运行官方的 Nginx image，默认是最新版本（lates">
 <meta property="article:published_time" content="2020-04-29T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-04-30T15:06:11.891Z">
+<meta property="article:modified_time" content="2020-04-30T15:17:25.304Z">
 <meta property="article:author" content="Nolevo">
 <meta property="article:tag" content="nginx">
 <meta name="twitter:card" content="summary">
@@ -352,7 +352,7 @@ cd nginx-docker-demo</code></pre><p>然后，新建一个html子目录。</p>
 --name mynginx \
 --volume &quot;$PWD/html&quot;:/usr/share/nginx/html \
 nginx</code></pre><p>打开浏览器，访问 1.1.1.1，应该就能看到 Hello World 了。</p>
-<h2 id="三、拷贝配置"><a href="#三、拷贝配置" class="headerlink" title="三、拷贝配置"></a>三、拷贝配置</h2><p>修改网页文件还不够，还要修改 Nginx 的配置文件，否则后面没法加 SSL 支持。</p>
+<h2 id="三、拷贝配置"><a href="#三、拷贝配置" class="headerlink" title="三、拷贝配置"></a>三、拷贝配置</h2><p>修改网页文件还不够，还要修改 Nginx 的配置文件，否则后面没法加 SSL 支持。<a id="more"></a></p>
 <p>首先，把容器里面的 Nginx 配置文件拷贝到本地。</p>
 <pre><code>docker container cp mynginx:/etc/nginx .</code></pre><p>上面命令的含义是，把mynginx容器的/etc/nginx拷贝到当前目录。<strong>不要漏掉最后那个点</strong></p>
 <p>执行完成后，当前目录应该多出一个nginx子目录。然后，把这个子目录改名为conf</p>
