@@ -85,16 +85,11 @@
 <meta property="og:url" content="https://nolevo.github.io/2018/01/20/ssh/index.html">
 <meta property="og:site_name" content="Nolevo&#39;s Notes">
 <meta property="og:description" content="以下命令在git里运行 设置Git的user name和email：(如果是第一次的话)12git config --global user.name &quot;nxxxx&quot;git config --global user.email  &quot;txxxx@gmail.com&quot;  检查是否已经有SSH Key。1cd ~&#x2F;.ssh  接着输入ls 1ls">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/9fe4afa0jw1famro8k282j20d3026jrq.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/9fe4afa0gw1fammrmpcbfj20as02eaad.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/9fe4afa0gw1fammt1ixqwj20h209k3yx.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/9fe4afa0gw1fammtr9flrj20iq0aywgp.jpg">
 <meta property="article:published_time" content="2018-01-20T08:35:06.000Z">
-<meta property="article:modified_time" content="2019-01-02T13:36:22.898Z">
+<meta property="article:modified_time" content="2020-04-30T08:35:48.502Z">
 <meta property="article:author" content="Nolevo">
 <meta property="article:tag" content="ssh">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/9fe4afa0jw1famro8k282j20d3026jrq.jpg">
 
 
 
@@ -339,7 +334,6 @@
 <a id="more"></a>
 <p>列出该文件下的文件，看是否存在 id_isa 和 id_isa.pub 文件（也可以是别的文件名，只要 yourName 和 yourName.pub 承兑存在），如果存在的话，证明已经存在 ssh key了，可以直接跳过 <em>生成密钥</em> 这一步骤，</p>
 <p>下图是存在的情况下</p>
-<p><img src="http://ww2.sinaimg.cn/large/9fe4afa0jw1famro8k282j20d3026jrq.jpg" alt=""></p>
 <h2 id="新生成密钥"><a href="#新生成密钥" class="headerlink" title="新生成密钥"></a>新生成密钥</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;txxxx@gmail.com.com&quot;</span><br></pre></td></tr></table></figure>
 
 <p>连续3个回车。如果不需要密码的话。<br>最后得到了两个文件：id_rsa和id_rsa.pub。</p>
@@ -349,13 +343,12 @@
 <h2 id="添加密钥到ssh-agent"><a href="#添加密钥到ssh-agent" class="headerlink" title="添加密钥到ssh-agent"></a>添加密钥到ssh-agent</h2><p>确保 ssh-agent 是可用的。ssh-agent是一种控制用来保存公钥身份验证所使用的私钥的程序，其实ssh-agent就是一个密钥管理器，运行ssh-agent以后，使用ssh-add将私钥交给ssh-agent保管，其他程序需要身份验证的时候可以将验证申请交给ssh-agent来完成整个认证过程。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eval &quot;$(ssh-agent -s)&quot;</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://ww3.sinaimg.cn/large/9fe4afa0gw1fammrmpcbfj20as02eaad.jpg" alt=""></p>
+
+
 <p>添加生成的 SSH key 到 ssh-agent。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add ~&#x2F;.ssh&#x2F;id_rsa</span><br></pre></td></tr></table></figure>
 
 <h2 id="登陆Github-添加-ssh-。"><a href="#登陆Github-添加-ssh-。" class="headerlink" title="登陆Github, 添加 ssh 。"></a>登陆Github, 添加 ssh 。</h2><p>把id_rsa.pub文件里的内容复制到这里</p>
-<p><img src="http://ww4.sinaimg.cn/large/9fe4afa0gw1fammt1ixqwj20h209k3yx.jpg" alt=""></p>
-<p><img src="http://ww4.sinaimg.cn/large/9fe4afa0gw1fammtr9flrj20iq0aywgp.jpg" alt=""></p>
 <h2 id="测试："><a href="#测试：" class="headerlink" title="测试："></a>测试：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
 
 <p>你将会看到：</p>
@@ -489,7 +482,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -502,7 +495,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
