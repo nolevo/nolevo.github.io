@@ -79,14 +79,14 @@
 
 
 
-<meta name="description" content="1纯笔记    vi &#x2F;etc&#x2F;config&#x2F;network 后，按i（英文i)进入编辑模式，修改成上面的值。修改完成后，按ESC退出vim的编辑模式然后输入:wq保存并退出 保存后，重启网络让配置生效root@Openwrt:# service network restart可以ping网关测试一下root@Openwrt:# ping 10.0.0.12linux下的ping和windows下">
+<meta name="description" content="1纯笔记    vi &#x2F;etc&#x2F;config&#x2F;network 后，按i（英文i)进入编辑模式，修改成上面的值。修改完成后，按ESC退出vim的编辑模式然后输入:wq保存并退出 保存后，重启网络让配置生效 root@Openwrt:~# service network restart 可以ping网关测试一下 root@Openwrt:~# ping 10.0.0.12 linux下的ping和wi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="笔记">
 <meta property="og:url" content="https://nolevo.github.io/2019/06/06/bz/index.html">
 <meta property="og:site_name" content="Nolevo&#39;s Notes">
-<meta property="og:description" content="1纯笔记    vi &#x2F;etc&#x2F;config&#x2F;network 后，按i（英文i)进入编辑模式，修改成上面的值。修改完成后，按ESC退出vim的编辑模式然后输入:wq保存并退出 保存后，重启网络让配置生效root@Openwrt:# service network restart可以ping网关测试一下root@Openwrt:# ping 10.0.0.12linux下的ping和windows下">
+<meta property="og:description" content="1纯笔记    vi &#x2F;etc&#x2F;config&#x2F;network 后，按i（英文i)进入编辑模式，修改成上面的值。修改完成后，按ESC退出vim的编辑模式然后输入:wq保存并退出 保存后，重启网络让配置生效 root@Openwrt:~# service network restart 可以ping网关测试一下 root@Openwrt:~# ping 10.0.0.12 linux下的ping和wi">
 <meta property="article:published_time" content="2019-06-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2019-06-06T02:29:31.332Z">
+<meta property="article:modified_time" content="2020-05-31T07:10:23.816Z">
 <meta property="article:author" content="Nolevo">
 <meta property="article:tag" content="软路由">
 <meta name="twitter:card" content="summary">
@@ -338,15 +338,23 @@
 
 <hr>
 <p>vi /etc/config/network 后，按i（英文i)进入编辑模式，修改成上面的值。<br>修改完成后，按ESC退出vim的编辑模式<br>然后输入:wq<br>保存并退出</p>
-<p>保存后，重启网络让配置生效<br>root@Openwrt:<del># service network restart<br>可以ping网关测试一下<br>root@Openwrt:</del># ping 10.0.0.12<br>linux下的ping和windows下的ping稍有区别,linux下ping不会自动终止,需要按ctrl+c终止或者用参数-c指定要求完成的回应次数</p>
+<p>保存后，重启网络让配置生效</p>
+<p>root@Openwrt:~# service network restart</p>
+<p>可以ping网关测试一下</p>
+<p>root@Openwrt:~# ping 10.0.0.12</p>
+<p>linux下的ping和windows下的ping稍有区别,linux下ping不会自动终止,需要按ctrl+c终止或者用参数-c指定要求完成的回应次数</p>
 <p>实例4：ping指定次数</p>
 <p>命令：</p>
 <p>ping -c 10 192.168.1.123</p>
-<p>恢复出厂设置<br>root@Openwrt:<del># firstboot<br>重启路由<br>root@Openwrt:</del># reboot</p>
+<p>恢复出厂设置</p>
+<p>root@Openwrt:~# firstboot</p>
+<p>重启路由</p>
+<p>root@Openwrt:~# reboot</p>
 <p>在openwrt系统中发现没有shutdown命令，可以采用下面的命令关闭系统。</p>
 <p>kill -USR1 1 注意：系统会立即关闭</p>
-<p>kill -USR2 1 效果等于reboot。</p>
-<p>某饮料代码<br>echo 0xDEADBEEF &gt; /etc/config/google_fu_mode</p>
+<p>kill -USR2 1 效果等于reboot。<a id="more"></a></p>
+<p>某饮料代码</p>
+<p>echo 0xDEADBEEF &gt; /etc/config/google_fu_mode</p>
 <p>chmod +x img2kvm</p>
 <p>./img2kvm synoboot.img 104 vm-104-disk-1<br>./img2kvm lede.img 103 vm-103-disk-1<br>./img2kvm lede.img 103 vm-103-disk-1</p>
 <p>回到proxmox的shell</p>

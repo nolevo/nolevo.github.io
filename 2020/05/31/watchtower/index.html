@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Nolevo&#39;s Notes">
 <meta property="og:description" content="1纯转载，好用的东西记录一下    前言Docker 容器的部署有一种在手机上装 App 的感觉，但 Docker 容器并不会像手机 App 那样会自动更新，而如果我们需要更新容器一般需要以下四个步骤： 停止容器：docker stop 删除容器：docker rm 更新镜像：docker pull 启动容器：docker run  … 停止容器这个步骤可以在删除容器时使用 -f 参数来代替，即使">
 <meta property="article:published_time" content="2020-05-30T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-05-31T07:02:24.234Z">
+<meta property="article:modified_time" content="2020-05-31T07:07:58.010Z">
 <meta property="article:author" content="Nolevo">
 <meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary">
@@ -345,6 +345,7 @@
 --name watchtower \
 -v /var/run/docker.sock:/var/run/docker.sock \
 containrrr/watchtower</code></pre><p>然后所有容器都会自动更新，也包括 Watch­tower 本身。</p>
+<a id="more"></a>
 <p>选项参数<br>点击查看<br>自动清除旧镜像<br>官方给出的默认启动命令在长期使用后会堆积非常多的标签为 none 的旧镜像，如果放任不管会占用大量的磁盘空间。要避免这种情况可以加入 –cleanup 选项，这样每次更新都会把旧的镜像清理掉。</p>
 <pre><code>docker run -d \
 --name watchtower \
